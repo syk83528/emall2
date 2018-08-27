@@ -17,9 +17,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+
     <jstl.version>1.2</jstl.version>
     <servlet.version>7.0.64</servlet.version>
     <slf4j.version>1.7.6</slf4j.version>
+
+    <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
+    <org.mybatis.version>3.4.1</org.mybatis.version>
+    <org.mybatis.spring.version>1.3.0</org.mybatis.spring.version>
   </properties>
 
   <dependencyManagement>
@@ -27,7 +32,7 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
-        <version>4.3.14.RELEASE</version>
+        <version>${org.springframework.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -89,8 +94,21 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
-      <version>1.3.0</version>
+      <version>${org.mybatis.spring.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${org.mybatis.version}</version>
+    </dependency>
+    <!-- mybatis-generator-core 反向生成java代码-->
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+      <version>1.3.5</version>
+    </dependency>
+
+
     <dependency>
       <groupId>c3p0</groupId>
       <artifactId>c3p0</artifactId>
@@ -130,39 +148,6 @@
 
   <build>
     <finalName>emall2</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.7.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
 
 
     <plugins>
