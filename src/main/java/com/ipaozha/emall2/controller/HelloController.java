@@ -1,5 +1,8 @@
 package com.ipaozha.emall2.controller;
 
+import com.ipaozha.emall2.pojo.Icon;
+import com.ipaozha.emall2.service.UploadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,9 @@ public class HelloController {
     @Value("${adImage.savePath}")
     private String imageSavePath;
 
+    @Autowired
+    private UploadService uploadService;
+
     @RequestMapping("/hello")
     public static String hello() {
         return "/upload/hello";
@@ -29,10 +35,14 @@ public class HelloController {
 
     @RequestMapping(value = "/upload.do", method = RequestMethod.POST)
     @ResponseBody
-    public static String uploadAction(@RequestParam("name") String name,@RequestParam("file") MultipartFile file) {
-        if (file != null) {
-            return name + "文件传过来啦!" + file.getOriginalFilename();
+    public String uploadAction(@RequestParam("name") String name,@RequestParam("file") MultipartFile file) {
+
+        Icon icon = uploadService.addImage(name,file);
+        if (icon.getIcon() != null) {
+            return "上传成功";
+        }else  {
+            return  "上传失败";
         }
-        return "asd";
+
     }
 }
