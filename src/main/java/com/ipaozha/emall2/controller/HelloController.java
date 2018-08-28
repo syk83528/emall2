@@ -17,9 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class HelloController {
 
-    @Value("${adImage.savePath}")
-    private String imageSavePath;
-
     @Autowired
     private UploadService uploadService;
 
@@ -39,9 +36,9 @@ public class HelloController {
 
         Icon icon = uploadService.addImage(name,file);
         if (icon.getIcon() != null) {
-            return "上传成功";
+            return "success";
         }else  {
-            return  "上传失败";
+            return  "failure";
         }
 
     }
