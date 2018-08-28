@@ -11,11 +11,14 @@ public class Icon {
 
     private Date updateTime;
 
-    public Icon(Integer id, String icon, Date createTime, Date updateTime) {
+    private Integer categoryId;
+
+    public Icon(Integer id, String icon, Date createTime, Date updateTime, Integer categoryId) {
         this.id = id;
         this.icon = icon;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.categoryId = categoryId;
     }
 
     public Icon() {
@@ -52,5 +55,13 @@ public class Icon {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }
