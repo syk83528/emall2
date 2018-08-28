@@ -10,6 +10,8 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+    
+    <context:component-scan base-package="com.ipaozha.emall2.dao" />
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
@@ -49,17 +51,24 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据源 -->
         <property name="dataSource" ref="dataSource"/>
-        <!-- 扫描mybatis核心配置文件 -->
-        <property name="configLocation" value="classpath:spring/mybatis.xml"/>
-        <!-- 扫描java bean，自动使用别名 -->
-        <property name="typeAliasesPackage" value="com.ipaozha.emall2"/>
+        <!--&lt;!&ndash; 扫描mybatis核心配置文件 &ndash;&gt;-->
+        <!--<property name="configLocation" value="classpath:spring/mybatis.xml"/>-->
+        <!--&lt;!&ndash; 扫描java bean，自动使用别名 &ndash;&gt;-->
+        <!--<property name="typeAliasesPackage" value="com.ipaozha.emall2"/>-->
         <!-- 扫描mybatis的SQL配置文件 -->
-        <property name="mapperLocations" value="classpath:com/ipaozha/emall2/mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <!-- 扫描Dao接口包 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="com.ipaozha.emall2"/>
+        <property name="basePackage" value="com.ipaozha.emall2.dao"/>
     </bean>
+
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
 </beans>

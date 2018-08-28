@@ -5,8 +5,8 @@
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="icon" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="create_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="DATE" javaType="java.util.Date" />
       <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
@@ -26,8 +26,8 @@
   <insert id="insert" parameterType="com.ipaozha.emall2.pojo.Icon" >
     insert into emall_icon (id, icon, create_time, 
       update_time, category_id)
-    values (#{id,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{categoryId,jdbcType=INTEGER})
+    values (#{id,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{updateTime,jdbcType=DATE}, #{categoryId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ipaozha.emall2.pojo.Icon" >
     insert into emall_icon
@@ -56,10 +56,10 @@
         #{icon,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+        #{createTime,jdbcType=DATE},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=DATE},
       </if>
       <if test="categoryId != null" >
         #{categoryId,jdbcType=INTEGER},
@@ -73,10 +73,10 @@
         icon = #{icon,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=DATE},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=DATE},
       </if>
       <if test="categoryId != null" >
         category_id = #{categoryId,jdbcType=INTEGER},
@@ -87,8 +87,8 @@
   <update id="updateByPrimaryKey" parameterType="com.ipaozha.emall2.pojo.Icon" >
     update emall_icon
     set icon = #{icon,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
       category_id = #{categoryId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
