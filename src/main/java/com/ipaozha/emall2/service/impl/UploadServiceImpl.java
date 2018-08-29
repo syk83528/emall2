@@ -16,20 +16,19 @@ public class UploadServiceImpl implements UploadService {
 
     @Value("${adImage.savePath}")
     private String savePath;
-    @Value("${adImage.url}")
-    private String imageURL;
 
     @Autowired
     private IconMapper iconMapper;
 
     @Override
     public Icon addImage(String name, MultipartFile image) {
+        String savePath = "/Users/suyikun/Source/tomcat-uploadSource/";
         Icon icon = new Icon();
         icon.setIcon(name);
         if (image.getSize() > 0) {
             String imageName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
             File imageFile = new File(savePath + imageName);
-            //判断文件夹是否存在
+            // 项目下相对路径
             File folder = new File(savePath);
             if (!folder.exists()) {
                 folder.mkdir();

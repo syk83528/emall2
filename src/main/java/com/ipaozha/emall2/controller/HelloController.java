@@ -30,7 +30,7 @@ public class HelloController {
         return "/upload/upload";
     }
 
-    @RequestMapping(value = "/upload.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/uploadAction", method = RequestMethod.POST)
     @ResponseBody
     public String uploadAction(@RequestParam("name") String name,@RequestParam("file") MultipartFile file) {
 

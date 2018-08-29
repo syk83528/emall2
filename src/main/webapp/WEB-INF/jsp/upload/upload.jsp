@@ -20,7 +20,7 @@
 </head>
 <body>
 <h1>上传图片</h1>
-<form id="form" action="/upload.do" method="post" enctype="multipart/form-data">
+<form id="form" action="${basePath}/uploadAction" method="post" enctype="multipart/form-data">
     <div>
         <span>用户名</span><input type="text" name="name">
     </div>
