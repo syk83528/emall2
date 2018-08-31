@@ -37,8 +37,8 @@ public class UploadServiceImpl implements UploadService {
             try {
                 image.transferTo(imageFile);
                 icon.setIcon(imageName);
-                iconMapper.insertSelective(icon);
-                return icon;
+                int id = iconMapper.insertSelective(icon);
+                return iconMapper.selectByPrimaryKey(icon.getId());
             } catch (IOException e) {
                 e.printStackTrace();
                 return icon;

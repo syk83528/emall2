@@ -4,7 +4,8 @@ public enum RespCode {
     success(0,"success"),
     error(1,"error"),
     need_login(10,"need_login"),
-    illegal_arguments(2,"illegal_arguments");
+    illegal_arguments(2,"illegal_arguments")
+    ;
 
 
     private final Integer code;

@@ -7,7 +7,9 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	
-	<!--<plugins>-->
-		<!--<plugin interceptor="org.imooc.dao.interceptor.PageInterceptor"/>-->
-	<!--</plugins>-->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<property name="helperDialect" value="mysql" />
+		</plugin>
+	</plugins>
 </configuration>

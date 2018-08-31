@@ -23,13 +23,13 @@
     delete from emall_icon
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ipaozha.emall2.pojo.Icon" >
+  <insert id="insert" parameterType="com.ipaozha.emall2.pojo.Icon" keyProperty="id">
     insert into emall_icon (id, icon, create_time, 
       update_time, category_id)
     values (#{id,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
       #{updateTime,jdbcType=DATE}, #{categoryId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ipaozha.emall2.pojo.Icon" >
+  <insert id="insertSelective" parameterType="com.ipaozha.emall2.pojo.Icon" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into emall_icon
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -56,10 +56,10 @@
         #{icon,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        now(),
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        now(),
       </if>
       <if test="categoryId != null" >
         #{categoryId,jdbcType=INTEGER},
@@ -76,7 +76,7 @@
         create_time = #{createTime,jdbcType=DATE},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        now(),
       </if>
       <if test="categoryId != null" >
         category_id = #{categoryId,jdbcType=INTEGER},
@@ -88,7 +88,7 @@
     update emall_icon
     set icon = #{icon,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+      update_time = now(),
       category_id = #{categoryId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
